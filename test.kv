@@ -1,0 +1,56 @@
+#:kivy 1.11.1
+<Drops>:
+    orientation: 'vertical'
+    canvas:
+        Color:
+            rgba: 1,1,1,1
+
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: 'images/background/background.jpg'
+
+    BoxLayout:
+        orientation: 'vertical'
+        #padding: 10,10,10,10
+        canvas:
+            Color:
+                rgba: 0,0,0,0.65
+
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        BoxLayout:
+            id: menu
+            orientation: 'vertical'
+            size_hint: (1, 0.25)
+            spacing: 10
+            padding: (0,0,0,100)
+            TextInput:
+                id: texto
+                pos_hint: {'center_x' : .5}
+                input_filter: 'int'
+                size_hint: (None, None)
+                height: dp(40)
+                width: dp(100)
+                hint_text: 'nível'
+                multiline: False
+                on_text_validate: root.alteraConteudo()
+                halign: 'center'
+
+            Button:
+                pos_hint: {'center_x' : .5}
+                size_hint: (None, None)
+                width: dp(100)
+                height: dp(40)
+                text: 'rolar'
+                on_release: root.alteraConteudo()
+
+        ScrollView:
+            BoxLayout:
+                id: box
+                size_hint_y: None
+                height: self.minimum_height
+                padding: 100, 10, 100, 0
+                orientation: 'vertical'
